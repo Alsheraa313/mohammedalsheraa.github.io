@@ -1,10 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 // ── Types ──────────────────────────────────────────────────────────────────
-interface StatCardProps {
-  value: string;
-  label: string;
-}
 
 interface ProjectCardProps {
   num: string;
@@ -40,7 +36,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -49,13 +45,37 @@ function useReveal() {
 
 // ── About: "What drives me" panel ─────────────────────────────────────────
 const VALUES = [
-  { icon: "⬡", label: "Systems Thinking", desc: "I care about how everything connects—APIs, queues, databases, UI—as one living system." },
-  { icon: "◈", label: "Depth over breadth", desc: "I'd rather truly understand one problem than skim ten. I dig until I know why." },
-  { icon: "◇", label: "Impact at scale", desc: "Code that reaches 120K+ families changes how I think about software responsibilities." },
-  { icon: "◉", label: "Learning in public", desc: "Building real projects—not tutorials—is how I grow. Shipping beats theorizing." },
+  {
+    icon: "⬡",
+    label: "Systems Thinking",
+    desc: "I care about how everything connects—APIs, queues, databases, UI—as one living system.",
+  },
+  {
+    icon: "◈",
+    label: "Depth over breadth",
+    desc: "I'd rather truly understand one problem than skim ten. I dig until I know why.",
+  },
+  {
+    icon: "◇",
+    label: "Impact at scale",
+    desc: "Code that reaches 120K+ families changes how I think about software responsibilities.",
+  },
+  {
+    icon: "◉",
+    label: "Learning in public",
+    desc: "Building real projects—not tutorials—is how I grow. Shipping beats theorizing.",
+  },
 ];
 
-function ValueCard({ icon, label, desc }: { icon: string; label: string; desc: string }) {
+function ValueCard({
+  icon,
+  label,
+  desc,
+}: {
+  icon: string;
+  label: string;
+  desc: string;
+}) {
   return (
     <div className="value-card">
       <span className="value-icon">{icon}</span>
@@ -77,7 +97,9 @@ function SkillGroup({ title, tags }: SkillGroupProps) {
       </div>
       <div className="skill-tags">
         {tags.map((t) => (
-          <span key={t} className="skill-tag">{t}</span>
+          <span key={t} className="skill-tag">
+            {t}
+          </span>
         ))}
       </div>
     </div>
@@ -93,7 +115,9 @@ function ProjectCard({ num, name, desc, stack }: ProjectCardProps) {
       <div className="project-desc">{desc}</div>
       <div className="project-stack">
         {stack.map((s) => (
-          <span key={s.label} className={`stack-pill ${s.color}`}>{s.label}</span>
+          <span key={s.label} className={`stack-pill ${s.color}`}>
+            {s.label}
+          </span>
         ))}
       </div>
     </div>
@@ -101,7 +125,14 @@ function ProjectCard({ num, name, desc, stack }: ProjectCardProps) {
 }
 
 // ── Experience item ────────────────────────────────────────────────────────
-function ExpItem({ company, date, location, type, role, bullets }: ExpItemProps) {
+function ExpItem({
+  company,
+  date,
+  location,
+  type,
+  role,
+  bullets,
+}: ExpItemProps) {
   return (
     <div className="exp-item reveal">
       <div className="exp-meta">
@@ -137,16 +168,26 @@ export default function Portfolio() {
 
       {/* Nav */}
       <nav>
-        <a className="nav-logo" href="#hero">MA</a>
+        <a className="nav-logo" href="#hero">
+          MA
+        </a>
         <ul className="nav-links">
-          {["about", "skills", "experience", "projects", "education", "contact"].map((s) => (
-            <li key={s}><a href={`#${s}`}>{s}</a></li>
+          {[
+            "about",
+            "skills",
+            "experience",
+            "projects",
+            "education",
+            "contact",
+          ].map((s) => (
+            <li key={s}>
+              <a href={`#${s}`}>{s}</a>
+            </li>
           ))}
         </ul>
       </nav>
 
       <div className="wrapper">
-
         {/* Hero */}
         <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto" }}>
           <section id="hero">
@@ -156,12 +197,16 @@ export default function Portfolio() {
               <span className="line-2">Alsheraa</span>
             </h1>
             <p className="hero-tagline">
-              CS student at University of Michigan Dearborn crafting full-stack platforms,
-              AI-powered systems, and scalable cloud architectures.
+              CS student at University of Michigan Dearborn crafting full-stack
+              platforms, AI-powered systems, and scalable cloud architectures.
             </p>
             <div className="hero-cta">
-              <a href="#projects" className="btn-primary">View my work ↓</a>
-              <a href="mailto:Alsheraam@gmail.com" className="btn-ghost">Get in touch</a>
+              <a href="#projects" className="btn-primary">
+                View my work ↓
+              </a>
+              <a href="mailto:Alsheraam@gmail.com" className="btn-ghost">
+                Get in touch
+              </a>
             </div>
           </section>
           <div className="hero-scroll">
@@ -177,18 +222,22 @@ export default function Portfolio() {
           <div className="about-grid reveal">
             <div className="about-text">
               <p>
-                I'm <strong>Mohammed Alsheraa</strong>, a Computer Science student at the University of Michigan
-                Dearborn, expected to graduate in May 2027. I'm a US Citizen passionate about building software
-                that solves real problems at scale.
+                I'm <strong>Mohammed Alsheraa</strong>, a Computer Science
+                student at the University of Michigan Dearborn, expected to
+                graduate in May 2027. I'm a US Citizen passionate about building
+                software that solves real problems at scale.
               </p>
               <p>
-                From full-stack social media apps to <strong>AI-powered semantic search systems</strong> and
-                nonprofit logistics platforms, I love working across the entire stack — backend APIs, frontend
-                UIs, cloud infrastructure, and machine learning pipelines.
+                From full-stack social media apps to{" "}
+                <strong>AI-powered semantic search systems</strong> and
+                nonprofit logistics platforms, I love working across the entire
+                stack — backend APIs, frontend UIs, cloud infrastructure, and
+                machine learning pipelines.
               </p>
               <p>
-                Currently interning at Eternal Light, where my work impacts <strong>120,000+ families</strong>{" "}
-                through scalable web platforms.
+                Currently interning at Eternal Light, where my work impacts{" "}
+                <strong>120,000+ families</strong> through scalable web
+                platforms.
               </p>
             </div>
             {/* Replaced stats with "What drives me" values panel */}
@@ -207,11 +256,75 @@ export default function Portfolio() {
             <div className="section-label">02 — Technical Skills</div>
             <h2 className="section-title reveal">What I work with.</h2>
             <div className="skills-grid reveal">
-              <SkillGroup title="Languages" tags={["Python","TypeScript","JavaScript","Java","C++","C#","SQL","PHP","HTML/CSS"]} />
-              <SkillGroup title="Frameworks & Libraries" tags={["React","NestJS","FastAPI","Flask","Angular","Tailwind CSS","Prisma","LangChain","TanStack","Zustand"]} />
-              <SkillGroup title="AI / ML" tags={["Azure OpenAI","HuggingFace","SentenceTransformer","TensorFlow","PyTorch","XGBoost","spaCy","NLTK","DistilBERT"]} />
-              <SkillGroup title="Databases & Cloud" tags={["PostgreSQL","Redis","Firebase","Oracle","AWS EC2","Databricks","Azure DevOps","S3"]} />
-              <SkillGroup title="Dev Tools" tags={["Git","Docker","GraphQL","REST APIs","JWT Auth","Jupyter","NGINX","Power BI"]} />
+              <SkillGroup
+                title="Languages"
+                tags={[
+                  "Python",
+                  "TypeScript",
+                  "JavaScript",
+                  "Java",
+                  "C++",
+                  "C#",
+                  "SQL",
+                  "PHP",
+                  "HTML/CSS",
+                ]}
+              />
+              <SkillGroup
+                title="Frameworks & Libraries"
+                tags={[
+                  "React",
+                  "NestJS",
+                  "FastAPI",
+                  "Flask",
+                  "Angular",
+                  "Tailwind CSS",
+                  "Prisma",
+                  "LangChain",
+                  "TanStack",
+                  "Zustand",
+                ]}
+              />
+              <SkillGroup
+                title="AI / ML"
+                tags={[
+                  "Azure OpenAI",
+                  "HuggingFace",
+                  "SentenceTransformer",
+                  "TensorFlow",
+                  "PyTorch",
+                  "XGBoost",
+                  "spaCy",
+                  "NLTK",
+                  "DistilBERT",
+                ]}
+              />
+              <SkillGroup
+                title="Databases & Cloud"
+                tags={[
+                  "PostgreSQL",
+                  "Redis",
+                  "Firebase",
+                  "Oracle",
+                  "AWS EC2",
+                  "Databricks",
+                  "Azure DevOps",
+                  "S3",
+                ]}
+              />
+              <SkillGroup
+                title="Dev Tools"
+                tags={[
+                  "Git",
+                  "Docker",
+                  "GraphQL",
+                  "REST APIs",
+                  "JWT Auth",
+                  "Jupyter",
+                  "NGINX",
+                  "Power BI",
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -227,10 +340,10 @@ export default function Portfolio() {
             type="Internship"
             role="Software Engineering Intern"
             bullets={[
-              'Built a <strong>distribution management system</strong> using Flask and React, optimizing logistics and tracking for 5,000+ tons of food.',
-              'Implemented <strong>secure authentication workflows</strong> leveraging Firebase and OAuth, improving platform security and user accessibility.',
-              'Deployed scalable web platforms using <strong>AWS EC2 and NGINX</strong>, expanding digital outreach to 120,000+ families.',
-              'Refactored legacy applications into <strong>microservices</strong>, improving maintainability, scalability, and deployment efficiency.',
+              "Built a <strong>distribution management system</strong> using Flask and React, optimizing logistics and tracking for 5,000+ tons of food.",
+              "Implemented <strong>secure authentication workflows</strong> leveraging Firebase and OAuth, improving platform security and user accessibility.",
+              "Deployed scalable web platforms using <strong>AWS EC2 and NGINX</strong>, expanding digital outreach to 120,000+ families.",
+              "Refactored legacy applications into <strong>microservices</strong>, improving maintainability, scalability, and deployment efficiency.",
             ]}
           />
         </section>
@@ -303,10 +416,18 @@ export default function Portfolio() {
           <div className="edu-card reveal">
             <div>
               <div className="edu-school">University of Michigan Dearborn</div>
-              <div className="edu-degree">Bachelor of Science in Computer Science</div>
+              <div className="edu-degree">
+                Bachelor of Science in Computer Science
+              </div>
               <div className="edu-courses">
-                {["Data Structures & Algorithms", "Database Systems", "Java Programming"].map((c) => (
-                  <span key={c} className="edu-course">{c}</span>
+                {[
+                  "Data Structures & Algorithms",
+                  "Database Systems",
+                  "Java Programming",
+                ].map((c) => (
+                  <span key={c} className="edu-course">
+                    {c}
+                  </span>
                 ))}
               </div>
             </div>
@@ -319,36 +440,63 @@ export default function Portfolio() {
 
         {/* Contact */}
         <section id="contact">
-          <div className="section-label" style={{ justifyContent: "center" }}>06 — Contact</div>
+          <div className="section-label" style={{ justifyContent: "center" }}>
+            06 — Contact
+          </div>
           <h2 className="section-title reveal">Let's connect.</h2>
           <p className="contact-sub reveal">
-            I'm open to internships, collaborations, and interesting projects. Feel free to reach out.
+            I'm open to internships, collaborations, and interesting projects.
+            Feel free to reach out.
           </p>
           <div className="contact-links reveal">
             <a href="mailto:Alsheraam@gmail.com" className="contact-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m2 7 10 7 10-7" />
               </svg>
               Alsheraam@gmail.com
             </a>
-            <a href="https://linkedin.com/in/mohammedalsheraa" target="_blank" rel="noreferrer" className="contact-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <a
+              href="https://linkedin.com/in/mohammedalsheraa"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-link"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                 <rect x="2" y="9" width="4" height="12" />
                 <circle cx="4" cy="4" r="2" />
               </svg>
               LinkedIn
             </a>
-            <a href="https://github.com/mohammedalsheraa" target="_blank" rel="noreferrer" className="contact-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <a
+              href="https://github.com/mohammedalsheraa"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-link"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
               </svg>
               GitHub
             </a>
           </div>
         </section>
-
       </div>
 
       {/* Footer */}
